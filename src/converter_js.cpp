@@ -1,8 +1,7 @@
 #include "converter_js.h"
+#include "const_var.h"
 
 
-const int LINE_LENGTH = 46;
-const int HEADER_SPACER = 15;
 
 ConverterJSON* ConverterJSON::instance = nullptr;
 

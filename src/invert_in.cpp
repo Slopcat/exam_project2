@@ -1,6 +1,6 @@
 #include "invert_in.h"
+#include "const_var.h"
 
-const int HEADER_SPACER = 15;
 
 std::mutex InvertedIndex::mutexIndexMap;
 
