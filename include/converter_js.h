@@ -40,7 +40,7 @@ public:
  /*
  * read request file specified in REQUEST_FILE_PATH
  */
-    void readRequestFile(std::string path = "requests.json");  
+    void readRequestFile(const std::string & = "requests.json");
  /*
  * get maximal responses quantity, which can be returned be Search Server
  * @return maximal responses quantity

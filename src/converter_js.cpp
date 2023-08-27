@@ -154,7 +154,7 @@ void ConverterJSON::readConfigFile(std::string path)
 }
 
 
-void ConverterJSON::readRequestFile(std::string path)
+void ConverterJSON::readRequestFile(const std::string& path)
 {
     std::cout << "Requests reading: ";
     std::ifstream configFile(path);
