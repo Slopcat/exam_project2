@@ -85,4 +85,7 @@ https://github.com/google/googletest<br>
   }
 }
 ```
-<i>NOTE:<br>docid - identificator of a relevant document,<br>rank - relative index,<br>result - true (if relevance is found), or false (if document absolutely not relevant for certain request).</i>
+<i>NOTE:<br>
+docid - идентификация соответствующего документа<br>
+rank -  поисковый рейтинг<br>
+result - true (по данному запросу найден хотя бы один документ), или false (ни одного документа не найдено).</i>
