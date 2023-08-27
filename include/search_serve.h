@@ -30,11 +30,19 @@ public:
 
 	/*
     * let SearchServer know the word frequency in files.
+	* @param idx - link to the InvertedIndex instance to
 	*/
 	SearchServer(InvertedIndex& idx) : _index(idx) { };
+/*
+* process the search request
+* @param [in] queries_input - search requests from requests.json
+* @return the sorted list of relevant answers
+*/
 	std::vector<std::vector<RelativeIndex>> search(const std::vector<std::string>& queries_input);
-
-	
+/*
+* set maximal responses quantity from Search Server
+* @param [in] newMaxResponses - new value for maximal responses quantit
+*/
 	void setMaxResponses(const int& newMaxResponses);
 
 private:
@@ -42,9 +50,34 @@ private:
 	InvertedIndex _index;
 	int maxResponses{ 5 };
 
-	std::set<std::string> getUniqueWords(const std::string& request);	
+/*
+*getting unique words from request line
+* @param [in] request - separate string from request.json
+* @return set of unique words
+*/
+	std::set<std::string> getUniqueWords(const std::string& request);
+/*
+* get the vector of entries for words set
+* @param [in] words - set of words
+* @return vector of entries
+ */
 	std::vector<std::pair<std::string, size_t>> getWordsEntries(const std::set<std::string>& words);	
+/*
+* sort the entries vector in ascending direction of entries count
+* @param [in/out] wordsEntries - entries vector
+*/
 	void sortWordsAscendingToEntries(std::vector<std::pair<std::string, size_t>>& wordsEntries);
+	/*
+	* get the vector of documents where all words from request can be found
+	* @param [in] words - vector of pairs "word - entry count"
+    * @return the vector of document ids where all words can be found
+	*/
 	std::vector<size_t> getAllDocumentsWithWords(const std::vector<std::pair<std::string, size_t>>& words);	
+/*
+ * calculate absolute relevance of the document for certain words
+ * @param [in] docId - document id
+ * @param [in] uniqueWords - request words vector
+ * @return absolute relevance
+*/
 	size_t getAbsoluteRelevanceForDocument(size_t docId, std::set<std::string>& uniqueWords);
 };

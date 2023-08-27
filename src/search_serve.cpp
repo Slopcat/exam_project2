@@ -1,8 +1,6 @@
 #include "search_serve.h"
 
-/*
-*getting unique words from request line	 
-*/
+
 std::set<std::string> SearchServer::getUniqueWords(const std::string& request)
 {
 	std::set<std::string> result;
@@ -18,9 +16,7 @@ std::set<std::string> SearchServer::getUniqueWords(const std::string& request)
 	return result;
 }
 
-/*
-* get the vector of entries for words set	
- */
+
 std::vector<std::pair<std::string, size_t>> SearchServer::getWordsEntries(const std::set<std::string>& words)
 {
 	std::vector<std::pair<std::string, size_t>> result;
@@ -40,9 +36,7 @@ std::vector<std::pair<std::string, size_t>> SearchServer::getWordsEntries(const 
 	return result;
 }
 
-/*
-* get the vector of documents where all words from request can be found
-*/
+
 std::vector<size_t> SearchServer::getAllDocumentsWithWords(const std::vector<std::pair<std::string, size_t>>& words)
 {
 	std::vector<size_t> docIds{};
@@ -62,9 +56,7 @@ std::vector<size_t> SearchServer::getAllDocumentsWithWords(const std::vector<std
 	return docIds;
 }
 
-/*
-* sort the entries vector in ascending direction of entries count
-*/
+
 void SearchServer::sortWordsAscendingToEntries(std::vector<std::pair<std::string, size_t>>& wordsEntries)
 {
 	std::sort(wordsEntries.begin(), wordsEntries.end(), [](auto & left, auto & right)
@@ -73,9 +65,7 @@ void SearchServer::sortWordsAscendingToEntries(std::vector<std::pair<std::string
 		});
 }
 
-/*
- * calculate absolute relevance of the document for certain words
-*/
+
 size_t SearchServer::getAbsoluteRelevanceForDocument(size_t docId, std::set<std::string>& uniqueWords) {
 	size_t absoluteRelevance{ 0 };
 	for (const auto& word : uniqueWords)
@@ -86,9 +76,7 @@ size_t SearchServer::getAbsoluteRelevanceForDocument(size_t docId, std::set<std:
 	return absoluteRelevance;
 }
 
-/*
-* process the search request	
-*/
+
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string>& queries_input)
 {
 	std::vector<std::vector<RelativeIndex>> result{};
@@ -155,9 +143,6 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 	return result;
 }
 
-/*
-* set maximal responses quantity from Search Server	
-*/
 void SearchServer::setMaxResponses(const int& newMaxResponses)
 {
 	this->maxResponses = newMaxResponses;

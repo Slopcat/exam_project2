@@ -44,6 +44,7 @@ int main()
     auto allRequestsResults = searchServer.search(ConverterJSON::getInstance()->getRequests());
     writeAnswers(allRequestsResults);
     std::cout << "end of search.\n";
+    ConverterJSON::getInstance()->deletInstance();
     std::cin.get();
     return 0;
 }

@@ -8,15 +8,48 @@ class ConverterJSON
 {
 public:
 
-    
-    static ConverterJSON* getInstance();    
+ /*
+* get the address of a static object Converter JSON
+*  @return instance of the singleton
+*/
+    static ConverterJSON* getInstance();  
+ /*
+ * get a vector of words
+ * @return content of files listed in config.json
+ */
     std::vector<std::string> getTextDocuments();
+/*
+ * get the max responses per request
+ * @return max responses count
+ */
     int getResponsesLimit() const;    
-    std::vector<std::string> getRequests();    
+/*
+* get the requests from requests.json
+* @param[in] answers - vector of answers to be placed into answers.json file
+ */
+    std::vector<std::string> getRequests(); 
+ /*
+ * put requests results into "answers" file
+ * @param[in] answers - vector of answers to be placed into answers.json file
+ */
     void putAnswers(std::vector<std::vector<std::pair<int, float>>> answers);    
-    void readConfigFile(std::string path = "config.json");    
-    void readRequestFile(std::string path = "requests.json");    
+ /*
+ * read config file specified in CONFIG_FILE_PATH
+ */
+    void readConfigFile(std::string path = "config.json");
+ /*
+ * read request file specified in REQUEST_FILE_PATH
+ */
+    void readRequestFile(std::string path = "requests.json");  
+ /*
+ * get maximal responses quantity, which can be returned be Search Server
+ * @return maximal responses quantity
+ */
     int getMaxResponses() const;
+ /*
+ * deletes the created class
+ */
+    void deletInstance();
 
 private:
     ConverterJSON() = default; 

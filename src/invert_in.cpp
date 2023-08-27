@@ -4,9 +4,7 @@
 
 std::mutex InvertedIndex::mutexIndexMap;
 
-/*
-* update or fill the documents base in which search will be performed
-*/
+
 void InvertedIndex::updateDocumentBase(const std::vector<std::string>& input_docs)
 {
 	if (input_docs.empty())
@@ -28,9 +26,7 @@ void InvertedIndex::updateDocumentBase(const std::vector<std::string>& input_doc
 	indexingIsOngoing = false;
 }
 
-/*
-* get the count of \'word\' entries in ready documents base	
-*/
+
 std::vector<Entry> InvertedIndex::getWordCount(const std::string& word)
 {
 	if (indexingIsOngoing)
@@ -49,9 +45,7 @@ std::vector<Entry> InvertedIndex::getWordCount(const std::string& word)
 	}
 }
 
-/*
-* perform the indexing of the separate file
- */
+
 void InvertedIndex::indexTheFile(const std::string& fileContent, size_t docId)
 {
 	std::map<std::string, Entry> fileFreqDictionary;
@@ -85,9 +79,7 @@ void InvertedIndex::indexTheFile(const std::string& fileContent, size_t docId)
 	mutexIndexMap.unlock();
 }
 
-/*
-* get the word count in certain document	 
-*/
+
 size_t InvertedIndex::getWordCountInDoc(const std::string& word, const size_t doc_id) const
 {
 	if (indexingIsOngoing) {

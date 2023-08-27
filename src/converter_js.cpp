@@ -5,9 +5,6 @@
 
 ConverterJSON* ConverterJSON::instance = nullptr;
 
-/*
-* get the address of a static object Converter JSON
-*/
 
 ConverterJSON* ConverterJSON::getInstance()
 {
@@ -18,9 +15,7 @@ ConverterJSON* ConverterJSON::getInstance()
     return instance;
 }
 
-/*
- * get a vector of words
- */
+
 std::vector<std::string> ConverterJSON::getTextDocuments()
 {
     textDocuments.clear();
@@ -50,25 +45,19 @@ std::vector<std::string> ConverterJSON::getTextDocuments()
     return textDocuments;
 }
 
-/*
- * get the max responses per request
- */
+
 int ConverterJSON::getResponsesLimit() const
 {
     return maxResponses;
 }
 
-/*
-* get the requests from requests.json
- */
+
 std::vector<std::string> ConverterJSON::getRequests()
 {
     return requests;
 }
 
-/*
- * put requests results into "answers" file
- */
+
 void ConverterJSON::putAnswers(std::vector<std::vector<std::pair<int, float>>> answers)
 {
     nlohmann::json answersDict;
@@ -121,9 +110,7 @@ void ConverterJSON::putAnswers(std::vector<std::vector<std::pair<int, float>>> a
     }
 }
 
-/*
- * read config file specified in CONFIG_FILE_PATH
- */
+
 void ConverterJSON::readConfigFile(std::string path)
 {
     std::ifstream configFile(path);
@@ -166,9 +153,7 @@ void ConverterJSON::readConfigFile(std::string path)
     }
 }
 
-/*
- * read request file specified in REQUEST_FILE_PATH
- */
+
 void ConverterJSON::readRequestFile(std::string path)
 {
     std::cout << "Requests reading: ";
@@ -192,9 +177,18 @@ void ConverterJSON::readRequestFile(std::string path)
     }
 }
 
-/**
- * get maximal responses quantity, which can be returned be Search Server
- */
-int ConverterJSON::getMaxResponses() const {
+
+int ConverterJSON::getMaxResponses() const
+{
     return maxResponses;
+}
+
+void ConverterJSON::deletInstance()
+{
+    if (instance != nullptr)
+    {
+        delete instance;
+        instance = nullptr;
+    }
+   
 }
