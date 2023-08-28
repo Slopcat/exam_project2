@@ -9,6 +9,7 @@ add_executable (exam_project "exam_project.cpp" "converter_js.cpp" "${MY_INCLUDE
 "${MY_INCLUDE_DIR}/search_serve.h" "search_serve.cpp"
 "${MY_INCLUDE_DIR}/const_var.h")
 target_include_directories(exam_project PUBLIC ${MY_INCLUDE_DIR})
+#add_subdirectory(nlohmann_json)
 target_link_libraries(exam_project PRIVATE nlohmann_json::nlohmann_json)
 
 
